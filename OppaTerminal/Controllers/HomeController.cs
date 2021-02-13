@@ -27,7 +27,6 @@ namespace OppaTerminal.Controllers
             return View();
         }
 
-        [HttpGet]
         public IActionResult Mobile()
         {
             Payment model = new Payment();
@@ -48,8 +47,8 @@ namespace OppaTerminal.Controllers
             
             incomingData.Amount -= incomingData.Commission;
             incomingData.Service = (Service)3;
-            //SaveMobileToDb(incomingData);
-            SaveAllDataToDb(incomingData);
+
+            SavePaymentsToDb(incomingData);
             return View("Success");
         }
 
@@ -76,8 +75,7 @@ namespace OppaTerminal.Controllers
 
             incomingData.Amount -= incomingData.Commission;
 
-            //SaveCharityTaxesToDb(incomingData);
-            SaveAllDataToDb(incomingData);
+            SavePaymentsToDb(incomingData);
             return View("Success");
         }
 
@@ -109,33 +107,16 @@ namespace OppaTerminal.Controllers
             incomingData.Amount -= incomingData.Commission;
             incomingData.Service = (Service)2;
 
-            //SaveFinancesToDb(incomingData);
-            SaveAllDataToDb(incomingData);
+            SavePaymentsToDb(incomingData);
             return View("Success");
 
         }
 
-        private void SaveAllDataToDb(Payment data)
+        private void SavePaymentsToDb(Payment data)
         {
             _db.Payments.Add(data);
             _db.SaveChanges();
         }
-
-        //private void SaveMobileToDb(Mobile data)
-        //{
-        //    _db.Mobiles.Add(data);
-        //    _db.SaveChanges();
-        //}
-        //private void SaveCharityTaxesToDb(CharityOrTaxes data)
-        //{
-        //    _db.CharityOrTaxes.Add(data);
-        //    _db.SaveChanges();
-        //}
-        //private void SaveFinancesToDb(Finances data)
-        //{
-        //    _db.Finances.Add(data);
-        //    _db.SaveChanges();
-        //}
 
         static bool IsDigitsOnly(string str)
         {
