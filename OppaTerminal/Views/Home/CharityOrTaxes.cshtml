@@ -1,0 +1,38 @@
+﻿@using OppaTerminal.Models
+
+@{
+    ViewData["Title"] = "ქველმოქმედება/კომუნალურები";
+}
+
+@using (Html.BeginForm())
+{
+<fieldset>
+    <legend>ქველმოქმედება და კომუნალურების გადახდა</legend>
+
+    <div>
+        <label>აირჩიეთ სერვისი: </label>
+
+        <input name="Service" type="radio" value="@Service.Charity" />ქველმოქმედება
+        <input name="Service" type="radio" value="@Service.Taxes" />კომუნალურები
+
+    </div>
+
+    <div>
+        <label>მობილურის ნომერი</label>
+        <input data-val="true" maxlength="9" class="form-control" data-val-required="The Number field is required." id="Number" name="Number" type="text" placeholder="5XXXXXXXX" />
+    </div>
+
+    <div>
+        <label>პირადი ნომერი</label>
+        <input id="IDnumber" maxlength="11" class="form-control" name="IDnumber" type="text" value="" placeholder="XXXXXXXXXXX"/>
+    </div>
+
+    <div>
+        <label>თანხა</label>
+        <input data-val="true" class="form-control" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="Amount" name="Amount" type="text" placeholder="თანხის მინიმალური რაოდენობა: 1" />
+    </div>
+    <br/>
+    <input type="submit" value="ჩარიცხვა" />
+
+</fieldset>
+}
